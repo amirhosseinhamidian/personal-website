@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DigiSarvenaz";
+  src: url("/fonts/Digi-Sarvenaz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pinar";
+  src: url("/fonts/Pinar-DS4-FD-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pinar";
+  src: url("/fonts/Pinar-DS4-FD-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pinar";
+  src: url("/fonts/Pinar-DS4-FD-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
