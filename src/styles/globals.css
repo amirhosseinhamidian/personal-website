@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'DigiSarvenaz';
+  src: url('/fonts/Digi Sarvenaz.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pinar-pn';
+  src: url('/fonts/Pinar-DS4-FD-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pinar-pn';
+  src: url('/fonts/Pinar-DS4-FD-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pinar-pn';
+  src: url('/fonts/Pinar-DS4-FD-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pinar';
+  src: url('/fonts/Pinar-DS4-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pinar';
+  src: url('/fonts/Pinar-DS4-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pinar';
+  src: url('/fonts/Pinar-DS4-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 1px;
+  height: 3px;
+  background: linear-gradient(to right, #8750f6, #1b131b);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover {
+  text-decoration: none;
+}
+
+.nav-link:not(:hover)::after {
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* تغییر ظاهر اسکرول‌بار برای مرورگرهای مدرن */
+::-webkit-scrollbar {
+  width: 8px; /* عرض اسکرول‌بار */
+  height: 8px; /* برای اسکرول‌بار افقی */
+}
+
+/* رنگ پس‌زمینه اسکرول‌بار */
+::-webkit-scrollbar-track {
+  background: #2b1555;
+}
+
+/* رنگ و استایل دستگیره اسکرول */
+::-webkit-scrollbar-thumb {
+  background: #8750f6;
+}
+
+/* افکت هاور برای دستگیره اسکرول */
+::-webkit-scrollbar-thumb:hover {
+  background: #8750f6;
+}
+
+/* دکمه بالا (▲) */
+::-webkit-scrollbar-button:single-button:decrement {
+  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238750F6'%3E%3Cpath d='M12 8l-6 6h12z'/%3E%3C/svg%3E")
+    center no-repeat;
+  background-color: #2b1555;
+}
+
+/* دکمه پایین (▼) */
+::-webkit-scrollbar-button:single-button:increment {
+  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238750F6'%3E%3Cpath d='M12 16l6-6H6z'/%3E%3C/svg%3E")
+    center no-repeat;
+  background-color: #2b1555;
+}
+
+.custom-bullet {
+  background-color: #767676 !important; /* رنگ پیش‌فرض */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* تغییر رنگ بولت فعال */
+.custom-bullet-active {
+  background-color: #8750f6 !important; /* رنگ اصلی */
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
