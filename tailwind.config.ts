@@ -27,6 +27,7 @@ export default {
         secondary: '#6C48D6',
         secondaryBackground: '#2F185E',
         red: '#CD1414',
+        green: '#1D9745',
         background: {
           light: '#ffffff',
           dark: '#0F0716',
@@ -64,7 +65,7 @@ export default {
         '2xs': ['10px', '24px'],
         xs: ['12px', '26px'],
         sm: ['14px', '28px'],
-        base: ['16px', '30px'],
+        base: ['16px', '34px'],
         lg: ['18px', '38px'],
         xl: ['20px', '42px'],
         '2xl': ['24px', '46px'],

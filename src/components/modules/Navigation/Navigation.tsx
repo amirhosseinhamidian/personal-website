@@ -45,7 +45,7 @@ const Navigation = ({ onClick, direction = 'row' }: NavigationProps) => {
           <button
             key={index}
             onClick={() => handleNavigation(item.id)}
-            className='nav-link mx-auto w-fit'
+            className='nav-link mx-auto w-fit text-sm lg:text-base'
           >
             {item.name}
           </button>

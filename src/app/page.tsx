@@ -5,6 +5,7 @@ import EducationExperienceSection from '@/components/templates/home/EducationExp
 import HeroSection from '@/components/templates/home/HeroSection';
 import LastProjectSection from '@/components/templates/home/LastProjectSection';
 import MySpecialtySection from '@/components/templates/home/MySpecialtySection';
+import PackagesSection from '@/components/templates/home/PackagesSection';
 import SkillsSection from '@/components/templates/home/SkillsSection';
 import StatsCounterSection from '@/components/templates/home/StatsCounterSection';
 import WorkTogetherSection from '@/components/templates/home/WorkTogetherSection';
@@ -19,6 +20,7 @@ export default function Home() {
         <ConsultingSection className='self-start' />
       </div>
       <SkillsSection />
+      <PackagesSection />
       <LastProjectSection />
       <MySpecialtySection />
       <EducationExperienceSection />
