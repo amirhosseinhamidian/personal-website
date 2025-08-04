@@ -3,26 +3,25 @@
 import { useState, useEffect } from 'react';
 
 export function useLanguage() {
-  const [language, setLanguage] = useState<'fa' | 'en'>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('language') as 'fa' | 'en') || 'fa';
-    }
-    return 'fa'; // مقدار پیش‌فرض در SSR
-  });
+  const [language, setLanguage] = useState<'fa' | 'en'>('fa');
 
+  // مقدار اولیه از localStorage
   useEffect(() => {
-    // وقتی زبان تغییر کرد، مقدار `lang` را در `document.documentElement` تنظیم کن
+    const stored = localStorage.getItem('language') as 'fa' | 'en' | null;
+    if (stored) {
+      setLanguage(stored);
+    }
+  }, []);
+
+  // اعمال زبان در DOM و ذخیره در localStorage
+  useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'fa' ? 'rtl' : 'ltr';
-
-    // تغییر مقدار در localStorage
     localStorage.setItem('language', language);
-
-    // ارسال یک رویداد سفارشی برای اطلاع به سایر کامپوننت‌ها
     window.dispatchEvent(new Event('languageChanged'));
   }, [language]);
 
-  // گوش دادن به رویداد تغییر زبان در سایر تب‌ها
+  // sync زبان بین تب‌ها
   useEffect(() => {
     const syncLanguage = () => {
       const storedLanguage = localStorage.getItem('language') as 'fa' | 'en';

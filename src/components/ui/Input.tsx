@@ -53,7 +53,7 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange}
         onKeyDown={handleKeyDown}
         maxLength={maxLength} // جلوگیری از ورود متن بیشتر از maxLength
-        className={`border-b border-subtext-light bg-transparent px-4 py-2 text-xs font-medium outline-none transition-all duration-300 ease-in placeholder:text-subtext-light focus:border-primary focus:outline-none dark:border-subtext-dark placeholder:dark:text-subtext-dark sm:text-sm ${errorMessage ? 'border-red' : ''} ${className}`}
+        className={`border-b border-subtext-light bg-transparent px-4 py-2 text-xs font-medium outline-none transition-all duration-300 ease-in placeholder:text-subtext-light focus:border-primary focus:outline-none dark:border-subtext-dark placeholder:dark:text-subtext-dark dark:focus:border-primary ${errorMessage ? 'border-red' : ''} ${className}`}
       />
 
       {/* نمایش پیام خطا در صورت وجود */}

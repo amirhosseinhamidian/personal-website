@@ -3,15 +3,37 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { scrollToSection } from '@/utils/scrollToSection';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface NavigationProps {
   onClick?: () => void;
   direction?: 'row' | 'wrap';
 }
 
+const labels = {
+  fa: {
+    intro: 'معرفی',
+    expertise: 'تخصص های من',
+    projects: 'پروژه‌ها',
+    blog: 'بلاگ',
+    contact: 'ارتباط با من',
+  },
+  en: {
+    intro: 'Intro',
+    expertise: 'My Expertise',
+    projects: 'Projects',
+    blog: 'Blog',
+    contact: 'Contact Me',
+  },
+} as const;
+
+type Language = keyof typeof labels;
+type LabelKey = keyof (typeof labels)['fa'];
+
 const Navigation = ({ onClick, direction = 'row' }: NavigationProps) => {
   const pathname = usePathname();
   const router = useRouter();
+  const { language } = useLanguage();
 
   const handleNavigation = (id: string) => {
     if (pathname === '/') {
@@ -31,15 +53,15 @@ const Navigation = ({ onClick, direction = 'row' }: NavigationProps) => {
       }`}
     >
       {[
-        { name: 'معرفی', id: 'intro' },
-        { name: 'پروژه‌ها', id: 'projects' },
-        { name: 'بلاگ', href: '/blog', id: '' },
-        { name: 'پلن‌های همکاری', id: 'plans' },
-        { name: 'ارتباط با من', id: 'contact' },
+        { key: 'intro', id: 'intro' },
+        { key: 'expertise', id: 'expertise' },
+        { key: 'projects', id: 'projects' },
+        { key: 'blog', href: '/', id: '' },
+        { key: 'contact', id: 'contact' },
       ].map((item, index) =>
         item.href ? (
           <Link key={index} href={item.href} className='nav-link mx-auto'>
-            {item.name}
+            {labels[language as Language][item.key as LabelKey]}
           </Link>
         ) : (
           <button
@@ -47,7 +69,7 @@ const Navigation = ({ onClick, direction = 'row' }: NavigationProps) => {
             onClick={() => handleNavigation(item.id)}
             className='nav-link mx-auto w-fit text-sm lg:text-base'
           >
-            {item.name}
+            {labels[language as Language][item.key as LabelKey]}
           </button>
         )
       )}

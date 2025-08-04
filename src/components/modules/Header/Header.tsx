@@ -9,10 +9,13 @@ import Navigation from '../Navigation/Navigation';
 import Button from '@/components/ui/Button';
 import { FiDownload } from 'react-icons/fi';
 import Drawer from '../Drawer/Drawer';
+import Link from 'next/link';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Header = () => {
   const { theme } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
@@ -61,9 +64,11 @@ const Header = () => {
         <div className='flex items-center gap-3 sm:gap-4'>
           <ThemeToggle className='hidden md:flex' />
           <LanguageToggle className='hidden md:flex' />
-          <Button shadow icon={FiDownload}>
-            رزومه
-          </Button>
+          <Link href='/resume.pdf'>
+            <Button shadow icon={FiDownload}>
+              {language === 'fa' ? 'رزومه' : 'Resume'}
+            </Button>
+          </Link>
         </div>
         <div className='flex items-center md:hidden'>
           <Drawer />
@@ -99,9 +104,11 @@ const Header = () => {
           <div className='flex items-center gap-3 sm:gap-4'>
             <ThemeToggle className='hidden md:flex' />
             <LanguageToggle className='hidden md:flex' />
-            <Button shadow icon={FiDownload}>
-              رزومه
-            </Button>
+            <Link href='/resume.pdf'>
+              <Button shadow icon={FiDownload}>
+                {language === 'fa' ? 'رزومه' : 'Resume'}
+              </Button>
+            </Link>
           </div>
           <div className='flex items-center md:hidden'>
             <Drawer />

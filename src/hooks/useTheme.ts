@@ -3,23 +3,25 @@
 import { useState, useEffect } from 'react';
 
 export function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    return (localStorage.getItem('theme') as 'light' | 'dark') || null;
-  });
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
+  // مقدار اولیه از localStorage بخون
   useEffect(() => {
-    // اعمال تغییرات در document
+    const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (stored) {
+      setTheme(stored);
+    }
+  }, []);
+
+  // اعمال کلاس به DOM و ذخیره در localStorage
+  useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
-
-    // ذخیره در localStorage
     localStorage.setItem('theme', theme);
-
-    // ارسال رویداد تغییر برای اطلاع به کامپوننت‌های دیگر
     window.dispatchEvent(new Event('themeChanged'));
   }, [theme]);
 
+  // گوش دادن به تغییر در تب‌های دیگر
   useEffect(() => {
-    // گوش دادن به تغییرات تم در localStorage (برای هماهنگی بین تب‌ها)
     const syncTheme = () => {
       const storedTheme = localStorage.getItem('theme') as 'light' | 'dark';
       if (storedTheme) {

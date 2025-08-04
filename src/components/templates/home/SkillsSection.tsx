@@ -1,8 +1,12 @@
+'use client';
 import GradientTitleH2 from '@/components/modules/GradientTitle/GradientTitleH2';
 import SkillsRow from '@/components/modules/Skills/SkillsRow';
+import { skillsContent } from '@/content/SkillsContent';
+import { useLanguage } from '@/hooks/useLanguage';
 import React from 'react';
 
 const SkillsSection = () => {
+  const { language } = useLanguage();
   const skillsList = {
     'front-end': [
       { id: 1, name: 'React.js', level: 90, logo: '/images/skill/react.png' },
@@ -74,12 +78,9 @@ const SkillsSection = () => {
 
   return (
     <div className='container mt-8 flex flex-col items-center sm:mt-10 md:mt-14'>
-      <GradientTitleH2 text='مهارت ها' />
+      <GradientTitleH2 text={skillsContent[language].title} />
       <p className='mt-4 max-w-xl text-center text-xs xs:text-sm sm:text-base'>
-        در مسیر برنامه‌نویسی، همواره در حال یادگیری و توسعه مهارت‌های خود
-        بوده‌ام. از برنامه‌نویسی موبایل تا توسعه وب فول استک، با استفاده از
-        تکنولوژی‌های مدرن، تجربه‌ای بهینه و کارآمد برای پروژه‌های مختلف خلق
-        می‌کنم.
+        {skillsContent[language].description}
       </p>
 
       {Object.entries(skillsList).map(([category, skills]) => (

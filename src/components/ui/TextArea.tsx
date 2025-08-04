@@ -1,4 +1,5 @@
 'use client';
+import { useLanguage } from '@/hooks/useLanguage';
 import React, { ChangeEvent } from 'react';
 
 interface InputProps {
@@ -30,11 +31,14 @@ const TextArea: React.FC<InputProps> = ({
   rows = 3,
   isShowCounter = false,
 }) => {
+  const { language } = useLanguage();
   return (
     <div className={`relative ${fullWidth ? 'w-full' : ''} ${className}`}>
       {/* نمایش شمارنده تعداد کاراکترها */}
       {isShowCounter && maxLength && (
-        <div className='absolute left-0 top-3 font-pinarpn text-xs text-subtext-light dark:text-subtext-dark'>
+        <div
+          className={`absolute top-3 text-xs text-subtext-light dark:text-subtext-dark ${language === 'fa' ? 'left-0 font-pinarpn' : 'right-0'}`}
+        >
           {value.length}/{maxLength}
         </div>
       )}
