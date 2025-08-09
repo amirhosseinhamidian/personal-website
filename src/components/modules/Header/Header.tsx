@@ -96,10 +96,10 @@ const Header = () => {
               className='max-w-12 sm:max-w-16'
             />
             <a
-              href='mailto:amirhosseinhamidian@info.ir'
+              href='mailto:amirhossein611@gmail.com'
               className='hidden text-sm transition-all duration-300 ease-in hover:text-primary lg:flex'
             >
-              amirhosseinhamidian@info.ir
+              amirhossein611@gmail.com
             </a>
           </div>
           <div className='hidden md:flex'>
