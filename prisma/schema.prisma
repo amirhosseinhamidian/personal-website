@@ -40,3 +40,12 @@ model SiteImage {
   siteType SiteType @relation(fields: [siteTypeId], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  lastName  String
+  email     String
+  phone     String
+  message   String
+  createdAt DateTime @default(now())
+}

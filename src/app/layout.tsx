@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '../styles/globals.css';
 import Header from '@/components/modules/Header/Header';
 import Footer from '@/components/modules/Footer/Footer';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
   title: 'امیرحسین حمیدیان - توسعه‌دهنده فرانت‌اند',
@@ -56,6 +57,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Toaster />
         <Footer />
       </body>
     </html>
