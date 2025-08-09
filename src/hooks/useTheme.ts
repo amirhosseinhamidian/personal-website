@@ -1,41 +1,75 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+type Theme = 'light' | 'dark' | 'system';
+
+function getPreferredTheme(): 'light' | 'dark' {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+}
+
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'light';
+  try {
+    const stored = localStorage.getItem('theme') as Theme | null;
+    if (stored === 'light' || stored === 'dark' || stored === 'system') {
+      return stored;
+    }
+    return 'system';
+  } catch {
+    return 'system';
+  }
+}
 
 export function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
-  // مقدار اولیه از localStorage بخون
+  // اعمال کلاس به HTML
   useEffect(() => {
-    const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (stored) {
-      setTheme(stored);
-    }
-  }, []);
+    const root = document.documentElement;
 
-  // اعمال کلاس به DOM و ذخیره در localStorage
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('theme', theme);
-    window.dispatchEvent(new Event('themeChanged'));
-  }, [theme]);
-
-  // گوش دادن به تغییر در تب‌های دیگر
-  useEffect(() => {
-    const syncTheme = () => {
-      const storedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-      if (storedTheme) {
-        setTheme(storedTheme);
-      }
+    const applyTheme = (t: Theme) => {
+      const effectiveTheme = t === 'system' ? getPreferredTheme() : t;
+      root.classList.toggle('dark', effectiveTheme === 'dark');
     };
 
-    window.addEventListener('themeChanged', syncTheme);
-    return () => window.removeEventListener('themeChanged', syncTheme);
+    applyTheme(theme);
+
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {}
+
+    if (theme === 'system') {
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      const handler = () => applyTheme('system');
+      media.addEventListener('change', handler);
+      return () => media.removeEventListener('change', handler);
+    }
+  }, [theme]);
+
+  // sync بین تب‌ها
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (
+        e.key === 'theme' &&
+        (e.newValue === 'light' ||
+          e.newValue === 'dark' ||
+          e.newValue === 'system')
+      ) {
+        setTheme(e.newValue as Theme);
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
   }, []);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) =>
+      prev === 'light' ? 'dark' : prev === 'dark' ? 'system' : 'light'
+    );
   };
 
-  return { theme, toggleTheme };
+  return { theme, setTheme, toggleTheme };
 }

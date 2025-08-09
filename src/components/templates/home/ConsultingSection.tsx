@@ -30,7 +30,7 @@ const ConsultingSection: React.FC<ConsultingSectionProps> = ({
         ))}
       </ul>
       <Image
-        src='/images/startup.png'
+        src='https://amirhosseinhamidian.storage.c2.liara.space/other/startup.png'
         alt={consultingContent[language].imageAlt}
         width={800}
         height={800}

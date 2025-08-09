@@ -13,14 +13,14 @@ interface NavigationProps {
 const labels = {
   fa: {
     intro: 'معرفی',
-    expertise: 'تخصص های من',
+    skills: 'مهارت های من',
     projects: 'پروژه‌ها',
     blog: 'بلاگ',
     contact: 'ارتباط با من',
   },
   en: {
     intro: 'Intro',
-    expertise: 'My Expertise',
+    skills: 'My skills',
     projects: 'Projects',
     blog: 'Blog',
     contact: 'Contact Me',
@@ -54,7 +54,7 @@ const Navigation = ({ onClick, direction = 'row' }: NavigationProps) => {
     >
       {[
         { key: 'intro', id: 'intro' },
-        { key: 'expertise', id: 'expertise' },
+        { key: 'skills', id: 'skills' },
         { key: 'projects', id: 'projects' },
         { key: 'blog', href: '/', id: '' },
         { key: 'contact', id: 'contact' },

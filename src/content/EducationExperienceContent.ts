@@ -9,7 +9,8 @@ export const educationExperienceContent = {
         title: 'مدرک برنامه‌نویسی پایتون',
         org: 'سازمان فنی حرفه ای',
         year: 'حضور یافته در سال 1402',
-        image: '/images/education/Technical and Vocational.png',
+        image:
+          'https://amirhosseinhamidian.storage.c2.liara.space/education/Technical%20and%20Vocational.png',
         alt: 'لوگوی سازمان فنی و حرفه‌ای ایران',
       },
       {
@@ -17,7 +18,8 @@ export const educationExperienceContent = {
         title: 'مدرک برنامه‌نویسی مقدماتی، پایتون و هوش مصنوعی',
         org: 'CS50 – Harvard',
         year: 'حضور یافته در سال 1402',
-        image: '/images/education/Harvard University.png',
+        image:
+          'https://amirhosseinhamidian.storage.c2.liara.space/education/Harvard%20University.png',
         alt: 'لوگوی دانشگاه هاروارد',
       },
     ],
@@ -60,7 +62,8 @@ export const educationExperienceContent = {
         title: 'Python Programming Certificate',
         org: 'Technical and Vocational Organization of Iran',
         year: 'Attended in 2023',
-        image: '/images/education/Technical and Vocational.png',
+        image:
+          'https://amirhosseinhamidian.storage.c2.liara.space/education/Technical%20and%20Vocational.png',
         alt: 'Logo of the Iranian Technical and Vocational Organization',
       },
       {
@@ -68,7 +71,8 @@ export const educationExperienceContent = {
         title: 'Intro to Programming, Python & AI',
         org: 'CS50 – Harvard',
         year: 'Attended in 2023',
-        image: '/images/education/Harvard University.png',
+        image:
+          'https://amirhosseinhamidian.storage.c2.liara.space/education/Harvard%20University.png',
         alt: 'Harvard University logo',
       },
     ],

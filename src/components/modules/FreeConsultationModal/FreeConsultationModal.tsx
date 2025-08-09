@@ -100,7 +100,7 @@ const FreeConsultationModal: React.FC<FreeConsultationModalProps> = ({
               </Button>
             </div>
             <Image
-              src='/images/Free consultation.png'
+              src='https://amirhosseinhamidian.storage.c2.liara.space/other/Free%20consultation.png'
               alt='free consultation vector'
               width={597}
               height={445}

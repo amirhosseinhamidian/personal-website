@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from '@/hooks/useTheme';
-import { LuSun, LuMoon } from 'react-icons/lu';
+import { LuSun, LuMoon, LuMonitor } from 'react-icons/lu';
 
 interface ThemeToggleProps {
   className?: string;
@@ -10,6 +10,12 @@ interface ThemeToggleProps {
 export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
 
+  const getIcon = () => {
+    if (theme === 'light') return <LuMoon size={24} />;
+    if (theme === 'dark') return <LuSun size={24} />;
+    return <LuMonitor size={24} />; // system icon
+  };
+
   return (
     <button
       onClick={toggleTheme}
@@ -17,7 +23,7 @@ export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
     >
       <span className='absolute h-full w-full scale-0 rounded-full bg-primary transition-transform duration-300 group-hover:-scale-100'></span>
       <span className='relative z-10 transform text-primary group-hover:text-white'>
-        {theme === 'light' ? <LuMoon size={24} /> : <LuSun size={24} />}
+        {getIcon()}
       </span>
     </button>
   );

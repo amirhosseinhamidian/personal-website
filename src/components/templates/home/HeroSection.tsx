@@ -21,10 +21,11 @@ const HeroSection = () => {
   return (
     <div className='flex flex-col items-center gap-6 rounded-xl border border-border-light bg-surface-light px-5 py-4 dark:border-border-dark dark:bg-surface-dark sm:flex-row sm:gap-10 md:gap-14'>
       <Image
-        src='/images/hero.jpg'
+        src='https://amirhosseinhamidian.storage.c2.liara.space/other/hero.jpg'
         alt='hero amirhossein hamidian'
         width={400}
         height={600}
+        priority
         className='h rounded-xl border border-gray-800 sm:h-64 sm:w-52 md:h-80 md:w-64'
       />
       <div className='flex flex-col gap-6'>

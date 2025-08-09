@@ -85,9 +85,7 @@ const WorkTogetherSection = () => {
           <a href='tel:+989339801698'>989339801698+</a>
         </h3>
         <h3 className='mt-4 cursor-pointer text-base font-medium underline transition-all duration-500 hover:text-primary md:text-lg'>
-          <a href='mailto:amirhosseinhamidian@info.ir'>
-            amirhosseinhamidian@info.ir
-          </a>
+          <a href='mailto:amirhossein611@gmail.com'>amirhossein611@gmail.com</a>
         </h3>
         <SocialLinks className='mt-4' />
       </div>

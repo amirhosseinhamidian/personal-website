@@ -25,7 +25,7 @@ const Drawer = () => {
 
       {/* منو از بالا باز می‌شود */}
       <div
-        className={`fixed left-0 top-0 w-full transform bg-primary p-6 ${
+        className={`fixed left-0 top-0 w-full transform bg-primary p-6 text-white ${
           isOpen ? 'translate-y-0' : '-translate-y-full'
         } z-50 transition-transform duration-300`}
       >

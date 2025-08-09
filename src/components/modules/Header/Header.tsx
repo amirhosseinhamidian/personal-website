@@ -23,9 +23,9 @@ const Header = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > 80 && currentScrollY < prevScrollY) {
-        setIsVisible(true); // نمایش هدر هنگام اسکرول بالا
+        setIsVisible(false); // نمایش هدر هنگام اسکرول بالا
       } else if (currentScrollY > 80 && currentScrollY > prevScrollY) {
-        setIsVisible(false); // مخفی کردن هدر هنگام اسکرول پایین
+        setIsVisible(true); // مخفی کردن هدر هنگام اسکرول پایین
       }
       prevScrollY = currentScrollY;
     };
@@ -44,7 +44,9 @@ const Header = () => {
           <Image
             key={theme}
             src={
-              theme === 'dark' ? '/images/logo-dk.png' : '/images/logo-li.png'
+              theme === 'dark'
+                ? 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-dk.png'
+                : 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-li.png'
             }
             alt='amirhossein hamidian site logo'
             width={600}
@@ -52,19 +54,19 @@ const Header = () => {
             className='max-w-12 sm:max-w-16'
           />
           <a
-            href='mailto:amirhosseinhamidian@info.ir'
+            href='mailto:amirhossein611@gmail.com'
             className='hidden text-sm transition-all duration-300 ease-in hover:text-primary lg:flex'
           >
-            amirhosseinhamidian@info.ir
+            amirhossein611@gmail.com
           </a>
         </div>
         <div className='hidden md:flex'>
           <Navigation direction='row' />
         </div>
         <div className='flex items-center gap-3 sm:gap-4'>
-          <ThemeToggle className='hidden md:flex' />
-          <LanguageToggle className='hidden md:flex' />
-          <Link href='/resume.pdf'>
+          <ThemeToggle />
+          <LanguageToggle />
+          <Link href='/resume.pdf' className='hidden md:flex'>
             <Button shadow icon={FiDownload}>
               {language === 'fa' ? 'رزومه' : 'Resume'}
             </Button>
@@ -84,7 +86,9 @@ const Header = () => {
             <Image
               key={theme}
               src={
-                theme === 'dark' ? '/images/logo-dk.png' : '/images/logo-li.png'
+                theme === 'dark'
+                  ? 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-dk.png'
+                  : 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-li.png'
               }
               alt='amirhossein hamidian site logo'
               width={600}
@@ -102,9 +106,9 @@ const Header = () => {
             <Navigation direction='row' />
           </div>
           <div className='flex items-center gap-3 sm:gap-4'>
-            <ThemeToggle className='hidden md:flex' />
-            <LanguageToggle className='hidden md:flex' />
-            <Link href='/resume.pdf'>
+            <ThemeToggle />
+            <LanguageToggle />
+            <Link href='/resume.pdf' className='hidden md:flex'>
               <Button shadow icon={FiDownload}>
                 {language === 'fa' ? 'رزومه' : 'Resume'}
               </Button>
