@@ -21,7 +21,7 @@ const HeroSection = () => {
   return (
     <div className='flex flex-col items-center gap-6 rounded-xl border border-border-light bg-surface-light px-5 py-4 dark:border-border-dark dark:bg-surface-dark sm:flex-row sm:gap-10 md:gap-14'>
       <Image
-        src='https://amirhosseinhamidian.storage.c2.liara.space/other/hero.jpg'
+        src='/images/hero.jpg'
         alt='hero amirhossein hamidian'
         width={400}
         height={600}

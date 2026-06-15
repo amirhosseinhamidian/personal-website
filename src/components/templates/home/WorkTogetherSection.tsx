@@ -19,9 +19,16 @@ type Errors = {
   message?: string;
 };
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+type ContactPayload = {
+  name: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+};
 
-const irPhoneRegex = /^(?:\+?98|0)?9\d{9}$/; // نمونه ساده برای موبایل ایران
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+const irPhoneRegex = /^(?:\+?98|0)?9\d{9}$/;
 
 const WorkTogetherSection: React.FC = () => {
   const toast = createToastHandler();
@@ -36,43 +43,62 @@ const WorkTogetherSection: React.FC = () => {
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState<boolean>(false);
 
+  const normalizePhone = (value: string) => {
+    return value.replace(/\s|-/g, '').trim();
+  };
+
+  const getPayload = (): ContactPayload => {
+    return {
+      name: name.trim(),
+      lastName: lastName.trim(),
+      email: email.trim().toLowerCase(),
+      phone: normalizePhone(phone),
+      message: message.trim(),
+    };
+  };
+
   const validateInputs = (): boolean => {
     const next: Errors = {};
+    const payload = getPayload();
 
-    if (!name.trim()) {
+    if (!payload.name) {
       next.name =
         language === 'fa'
           ? 'لطفاً نام خود را وارد کنید.'
           : 'Please enter your first name.';
     }
-    if (!lastName.trim()) {
+
+    if (!payload.lastName) {
       next.lastName =
         language === 'fa'
           ? 'لطفاً نام خانوادگی را وارد کنید.'
           : 'Please enter your last name.';
     }
-    if (!email.trim()) {
+
+    if (!payload.email) {
       next.email =
         language === 'fa' ? 'ایمیل الزامی است.' : 'Email is required.';
-    } else if (!emailRegex.test(email.trim())) {
+    } else if (!emailRegex.test(payload.email)) {
       next.email =
         language === 'fa' ? 'فرمت ایمیل معتبر نیست.' : 'Invalid email format.';
     }
-    if (!phone.trim()) {
+
+    if (!payload.phone) {
       next.phone =
         language === 'fa'
           ? 'شماره تماس الزامی است.'
           : 'Phone number is required.';
-    } else if (!irPhoneRegex.test(phone.replace(/\s|-/g, ''))) {
+    } else if (!irPhoneRegex.test(payload.phone)) {
       next.phone =
         language === 'fa' ? 'شماره تماس معتبر نیست.' : 'Invalid phone number.';
     }
-    if (!message.trim()) {
+
+    if (!payload.message) {
       next.message =
         language === 'fa'
           ? 'لطفاً پیام خود را وارد کنید.'
           : 'Please enter your message.';
-    } else if (message.trim().length < 10) {
+    } else if (payload.message.length < 10) {
       next.message =
         language === 'fa' ? 'پیام خیلی کوتاه است.' : 'Message is too short.';
     }
@@ -81,7 +107,18 @@ const WorkTogetherSection: React.FC = () => {
     return Object.keys(next).length === 0;
   };
 
+  const resetForm = () => {
+    setName('');
+    setLastName('');
+    setEmail('');
+    setPhone('');
+    setMessage('');
+    setErrors({});
+  };
+
   const handleSubmitForm = async () => {
+    if (submitting) return;
+
     if (!validateInputs()) {
       toast.showErrorToast(
         language === 'fa'
@@ -91,18 +128,28 @@ const WorkTogetherSection: React.FC = () => {
       return;
     }
 
+    const payload = getPayload();
+
     setSubmitting(true);
 
     const promise = fetch('/api/contact', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, lastName, email, phone, message }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
     }).then(async (res) => {
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.message || 'Request failed');
+        throw new Error(
+          data?.message ||
+            data?.error ||
+            (language === 'fa' ? 'درخواست ناموفق بود.' : 'Request failed.')
+        );
       }
-      return res.json();
+
+      return data;
     });
 
     toast.handlePromiseToast(promise, {
@@ -113,34 +160,33 @@ const WorkTogetherSection: React.FC = () => {
           : 'Your message has been sent.',
       errorMessage: (e) =>
         language === 'fa'
-          ? `ارسال با خطا مواجه شد: ${e instanceof Error ? e.message : 'خطای نامشخص'}`
-          : `Failed to send: ${e instanceof Error ? e.message : 'Unknown error'}`,
+          ? `ارسال با خطا مواجه شد: ${
+              e instanceof Error ? e.message : 'خطای نامشخص'
+            }`
+          : `Failed to send: ${
+              e instanceof Error ? e.message : 'Unknown error'
+            }`,
     });
 
     try {
       await promise;
-      // پاک‌سازی فرم بعد از موفقیت
-      setName('');
-      setLastName('');
-      setEmail('');
-      setPhone('');
-      setMessage('');
-      setErrors({});
+      resetForm();
     } catch {
-      // خطا در toast.promise هندل می‌شود
+      // خطا توسط toast نمایش داده می‌شود
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <div className='grid grid-cols-1 gap-10 rounded-xl border border-border-light bg-surface-light px-10 py-8 dark:border-border-dark dark:bg-surface-dark sm:grid-cols-2 sm:gap-8 lg:gap-14'>
+    <div className="grid grid-cols-1 gap-10 rounded-xl border border-border-light bg-surface-light px-10 py-8 dark:border-border-dark dark:bg-surface-dark sm:grid-cols-2 sm:gap-8 lg:gap-14">
       <div>
         <GradientTitleH2
           text={content.title}
-          className='max-w-28 p-3 xs:max-w-32 lg:max-w-40 lg:p-5 xl:max-w-48'
+          className="max-w-28 p-3 xs:max-w-32 lg:max-w-40 lg:p-5 xl:max-w-48"
         />
-        <p className='text-xs xs:text-sm lg:text-base'>{content.subtitle}</p>
+
+        <p className="text-xs xs:text-sm lg:text-base">{content.subtitle}</p>
 
         <div>
           <Input
@@ -150,7 +196,7 @@ const WorkTogetherSection: React.FC = () => {
             }
             fullWidth
             placeholder={content.form.name}
-            className='mt-6'
+            className="mt-6"
             errorMessage={errors.name}
           />
 
@@ -161,7 +207,7 @@ const WorkTogetherSection: React.FC = () => {
             }
             fullWidth
             placeholder={content.form.lastName}
-            className='mt-3'
+            className="mt-3"
             errorMessage={errors.lastName}
           />
 
@@ -172,22 +218,21 @@ const WorkTogetherSection: React.FC = () => {
             }
             fullWidth
             placeholder={content.form.email}
-            type='email'
-            className='mt-3'
+            type="email"
+            className="mt-3"
             errorMessage={errors.email}
           />
 
           <Input
             value={phone}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              // فقط اعداد و + و فاصله/خط فاصله را قبول کن
-              const val = e.target.value.replace(/[^\d+\-\s]/g, '');
-              setPhone(val);
+              const value = e.target.value.replace(/[^\d+\-\s]/g, '');
+              setPhone(value);
             }}
             fullWidth
             placeholder={content.form.phone}
-            type='tel'
-            className='mt-3'
+            type="tel"
+            className="mt-3"
             errorMessage={errors.phone}
           />
 
@@ -201,14 +246,14 @@ const WorkTogetherSection: React.FC = () => {
             rows={5}
             isShowCounter
             maxLength={1000}
-            className='mt-3'
+            className="mt-3"
             errorMessage={errors.message}
           />
 
           <Button
             shadow
             icon={FiArrowUpLeft}
-            className='mt-9 text-sm sm:text-base'
+            className="mt-9 text-sm sm:text-base"
             onClick={handleSubmitForm}
             isLoading={submitting}
           >
@@ -217,15 +262,20 @@ const WorkTogetherSection: React.FC = () => {
         </div>
       </div>
 
-      <div className='self-center'>
+      <div className="self-center">
         <p>{content.available}</p>
-        <h3 className='mt-4 cursor-pointer text-base font-medium underline transition-all duration-500 hover:text-primary md:text-lg'>
-          <a href='tel:+989339801698'>+989339801698</a>
+
+        <h3 className="mt-4 cursor-pointer text-base font-medium underline transition-all duration-500 hover:text-primary md:text-lg">
+          <a href="tel:+989339801698">+989339801698</a>
         </h3>
-        <h3 className='mt-4 cursor-pointer text-base font-medium underline transition-all duration-500 hover:text-primary md:text-lg'>
-          <a href='mailto:amirhossein611@gmail.com'>amirhossein611@gmail.com</a>
+
+        <h3 className="mt-4 cursor-pointer text-base font-medium underline transition-all duration-500 hover:text-primary md:text-lg">
+          <a href="mailto:amirhossein611@gmail.com">
+            amirhossein611@gmail.com
+          </a>
         </h3>
-        <SocialLinks className='mt-4' />
+
+        <SocialLinks className="mt-4" />
       </div>
     </div>
   );

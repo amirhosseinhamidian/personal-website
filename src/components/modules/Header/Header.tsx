@@ -43,11 +43,7 @@ const Header = () => {
         <div className='flex items-center gap-2'>
           <Image
             key={theme}
-            src={
-              theme === 'dark'
-                ? 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-dk.png'
-                : 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-li.png'
-            }
+            src={theme === 'dark' ? '/images/logo-dk.png' : '/images/logo-li.png'}
             alt='amirhossein hamidian site logo'
             width={600}
             height={540}
@@ -85,11 +81,7 @@ const Header = () => {
           <div className='flex items-center gap-2'>
             <Image
               key={theme}
-              src={
-                theme === 'dark'
-                  ? 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-dk.png'
-                  : 'https://amirhosseinhamidian.storage.c2.liara.space/other/logo-li.png'
-              }
+              src={theme === 'dark' ? '/images/logo-dk.png' : '/images/logo-li.png'}
               alt='amirhossein hamidian site logo'
               width={600}
               height={540}

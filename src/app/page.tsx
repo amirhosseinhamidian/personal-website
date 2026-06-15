@@ -64,17 +64,18 @@ export default function Home() {
 
         <StatsCounterSection />
 
-        <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3'>
-          <AchievementsSection className='self-start lg:col-span-2' />
-          <ConsultingSection className='self-start' />
-        </div>
+        <section id='projects'>
+          <LastProjectSection />
+        </section>
 
         <section id='skills'>
           <SkillsSection />
         </section>
-        <section id='projects'>
-          <LastProjectSection />
-        </section>
+
+        <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3'>
+          <AchievementsSection className='self-start lg:col-span-2' />
+          <ConsultingSection className='self-start' />
+        </div>
 
         <MySpecialtySection />
         <EducationExperienceSection />

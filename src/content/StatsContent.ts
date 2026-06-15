@@ -2,12 +2,12 @@ export const statsContent = {
   fa: [
     {
       icon: 'briefcase',
-      number: '06+',
+      number: '07+',
       title: 'سال تجربه در برنامه نویسی',
     },
     {
       icon: 'expert',
-      number: '02+',
+      number: '03+',
       title: 'سال متخصص React & Next.js',
     },
     {
@@ -24,12 +24,12 @@ export const statsContent = {
   en: [
     {
       icon: 'briefcase',
-      number: '06+',
+      number: '07+',
       title: 'Years of Programming Experience',
     },
     {
       icon: 'expert',
-      number: '02+',
+      number: '03+',
       title: 'Year as React & Next.js Specialist',
     },
     {

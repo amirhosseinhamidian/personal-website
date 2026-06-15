@@ -10,7 +10,7 @@ export const educationExperienceContent = {
         org: 'سازمان فنی حرفه ای',
         year: 'حضور یافته در سال 1402',
         image:
-          'https://amirhosseinhamidian.storage.c2.liara.space/education/Technical%20and%20Vocational.png',
+          '/images/education/Technical%20and%20Vocational.png',
         alt: 'لوگوی سازمان فنی و حرفه‌ای ایران',
       },
       {
@@ -19,7 +19,7 @@ export const educationExperienceContent = {
         org: 'CS50 – Harvard',
         year: 'حضور یافته در سال 1402',
         image:
-          'https://amirhosseinhamidian.storage.c2.liara.space/education/Harvard%20University.png',
+          '/images/education/Harvard%20University.png',
         alt: 'لوگوی دانشگاه هاروارد',
       },
     ],
@@ -28,9 +28,9 @@ export const educationExperienceContent = {
         id: 1,
         title: 'برنامه‌نویس اندروید',
         items: [
-          'اپلیکیشن بنگاه – مدت: ۳ ماه',
+          'اپلیکیشن بنگاه – مدت: ۸ ماه',
           'اپلیکیشن پاساژ – مدت: ۲ سال',
-          'اپلیکیشن ترک اپ – مدت: ۳ ماه',
+          'اپلیکیشن ترک اپ – مدت: ۶ ماه',
         ],
       },
       {
@@ -63,7 +63,7 @@ export const educationExperienceContent = {
         org: 'Technical and Vocational Organization of Iran',
         year: 'Attended in 2023',
         image:
-          'https://amirhosseinhamidian.storage.c2.liara.space/education/Technical%20and%20Vocational.png',
+          '/images/education/Technical%20and%20Vocational.png',
         alt: 'Logo of the Iranian Technical and Vocational Organization',
       },
       {
@@ -72,7 +72,7 @@ export const educationExperienceContent = {
         org: 'CS50 – Harvard',
         year: 'Attended in 2023',
         image:
-          'https://amirhosseinhamidian.storage.c2.liara.space/education/Harvard%20University.png',
+          '/images/education/Harvard%20University.png',
         alt: 'Harvard University logo',
       },
     ],
@@ -81,9 +81,9 @@ export const educationExperienceContent = {
         id: 1,
         title: 'Android Developer',
         items: [
-          'Bongah App – 3 months',
+          'Bongah App – 8 months',
           'Passazh App – 2 years',
-          'TarkApp – 3 months',
+          'TarkApp – 6 months',
         ],
       },
       {
@@ -98,7 +98,7 @@ export const educationExperienceContent = {
         id: 3,
         title: 'Designer & Full-stack Developer',
         items: [
-          'Samaneh Yoga',
+          'Yoga and Meditation Platform',
           'Frontend & Backend with Next.js and PostgreSQL',
         ],
       },

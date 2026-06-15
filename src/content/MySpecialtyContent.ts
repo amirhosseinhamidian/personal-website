@@ -2,6 +2,7 @@ import { LuMonitor } from 'react-icons/lu';
 import { IoColorPaletteOutline } from 'react-icons/io5';
 import { MdInsertChartOutlined } from 'react-icons/md';
 import { PiLightbulbFilament } from 'react-icons/pi';
+import { SiWordpress } from 'react-icons/si';
 
 export const mySpecialtyContent = {
   fa: {
@@ -55,6 +56,22 @@ export const mySpecialtyContent = {
           { id: 3, tag: 'سئو و مقیاس‌پذیری' },
         ],
       },
+      {
+        id: 5,
+        icon: SiWordpress,
+        title: 'توسعه وردپرس',
+        description:
+          'طراحی و توسعه سایت‌های وردپرسی حرفه‌ای، سریع و قابل توسعه با قالب اختصاصی، سفارشی‌سازی قالب‌های آماده، پیاده‌سازی فروشگاه اینترنتی و بهینه‌سازی عملکرد و سئو.',
+        tags: [
+          { id: 1, tag: 'WordPress' },
+          { id: 2, tag: 'WooCommerce' },
+          { id: 3, tag: 'Elementor' },
+          { id: 4, tag: 'قالب اختصاصی' },
+          { id: 5, tag: 'سفارشی‌سازی قالب' },
+          { id: 6, tag: 'بهینه‌سازی سرعت' },
+          { id: 7, tag: 'سئو وردپرس' },
+        ],
+      },
     ],
   },
   en: {
@@ -106,6 +123,22 @@ export const mySpecialtyContent = {
           { id: 1, tag: 'Project Analysis' },
           { id: 2, tag: 'Wireframing' },
           { id: 3, tag: 'SEO & Scalability' },
+        ],
+      },
+      {
+        id: 5,
+        icon: SiWordpress,
+        title: 'WordPress Development',
+        description:
+          'Designing and developing professional, fast, and scalable WordPress websites with custom themes, ready-made theme customization, WooCommerce implementation, performance optimization, and SEO improvements.',
+        tags: [
+          { id: 1, tag: 'WordPress' },
+          { id: 2, tag: 'WooCommerce' },
+          { id: 3, tag: 'Elementor' },
+          { id: 4, tag: 'Custom Theme' },
+          { id: 5, tag: 'Theme Customization' },
+          { id: 6, tag: 'Speed Optimization' },
+          { id: 7, tag: 'WordPress SEO' },
         ],
       },
     ],
